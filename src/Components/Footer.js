@@ -29,9 +29,9 @@ const Footer = () => {
         </div>
         <div className="footer-section-columns">
           <span>123-456-7890</span>
-          <span>hello@canopyclub.io</span>
-          <span>press@canopyclub.io</span>
-          <span>contact@canopyclub.io</span>
+          <span>hello@canopyclub.us</span>
+          <span>press@canopyclub.us</span>
+          <span>contact@canopyclub.us</span>
         </div>
         <div className="footer-section-columns">
           <span>Terms & Conditions</span>

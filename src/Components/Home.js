@@ -39,7 +39,7 @@ const Home = () => {
             }}
             onClick={() =>
               window.open(
-                "https://alexander184.typeform.com/to/HUEgef",
+                "https://alexander184.typeform.com/to/tZVzhD3D",
                 "_blank"
               )
             }
