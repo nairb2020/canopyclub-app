@@ -1,20 +1,25 @@
 import "./App.css";
-import Home from "./Components/Home";
-import About from "./Components/About";
-import Work from "./Components/Work";
-import Testimonials from "./Components/Testimonials";
-import ContactUs from "./Components/ContactUs";
-import Footer from "./Components/Footer";
+import Home from "./components/Home";
+import About from "./components/About";
+import Work from "./components/Work";
+import Testimonials from "./components/Testimonials";
+import ContactUs from "./components/ContactUs";
+import Footer from "./components/Footer";
+import SignUp from "./components/LoginSignup/Signup";
+import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {
   return (
     <div className="App">
-      <Home />
+      {/* <Home />
       <About />
       <Work />
       <Testimonials />
       <ContactUs />
-      <Footer />
+      <Footer /> */}
+      <AuthProvider>
+        <SignUp />
+      </AuthProvider>
     </div>
   );
 }

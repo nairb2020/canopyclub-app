@@ -1,6 +1,6 @@
 import React from "react";
-import BannerBackground from "../Assets/home-banner-background.png";
-import BannerImage from "../Assets/home-banner-image.jpeg";
+import BannerBackground from "../assets/home-banner-background.png";
+import BannerImage from "../assets/home-banner-image.jpeg";
 import { FiArrowRight } from "react-icons/fi";
 import Navbar from "./Navbar";
 import { Button } from "@mui/material";

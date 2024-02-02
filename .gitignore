@@ -23,6 +23,7 @@ chrome-user-data
 .vscode
 *.swp
 *.swo
+*.env*
 .firebase/*
 
 packages/react-devtools-core/dist

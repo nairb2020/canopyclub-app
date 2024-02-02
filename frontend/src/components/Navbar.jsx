@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../Assets/Logo.png";
+import Logo from "../assets/Logo.png";
 import { BsCart2 } from "react-icons/bs";
 import { HiOutlineBars3 } from "react-icons/hi2";
 import {
@@ -17,7 +17,7 @@ import {
   Info,
   CommentRounded,
   PhoneRounded,
-  ShoppingCartRounded,
+  AccountCircleRounded
 } from "@mui/icons-material";
 
 const Navbar = () => {
@@ -40,8 +40,8 @@ const Navbar = () => {
       icon: <PhoneRounded />,
     },
     {
-      text: "Cart",
-      icon: <ShoppingCartRounded />,
+      text: "Log In/Sign Up",
+      icon: <AccountCircleRounded />,
     },
   ];
   return (
@@ -54,10 +54,7 @@ const Navbar = () => {
         <a href="">About</a>
         <a href="">Testimonials</a>
         <a href="">Contact</a>
-        <a href="">
-          <BsCart2 className="navbar-cart-icon" />
-        </a>
-        <button className="primary-button">Booking Now</button>
+        <button className="primary-button">Log In/Sign Up</button>
       </div>
       <div className="navbar-menu-container">
         <HiOutlineBars3 onClick={() => setOpenMenu(true)} />
