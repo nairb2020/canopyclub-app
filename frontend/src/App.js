@@ -1,28 +1,23 @@
 import "./App.css";
-import Home from "./components/Home";
-import About from "./components/About";
-import Work from "./components/Work";
-import Testimonials from "./components/Testimonials";
-import ContactUs from "./components/ContactUs";
-import Footer from "./components/Footer";
-import SignUp from "./components/LoginSignup/Signup";
+import Home from "./views/home/Home";
+import SignUp from "./views/LoginSignup/Signup";
+import Login from "./views/LoginSignup/Login";
 import { AuthProvider } from "./contexts/AuthContext";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      {/* <Home />
-      <About />
-      <Work />
-      <Testimonials />
-
-
-      
-      <ContactUs />
-      <Footer /> */}
-      <AuthProvider>
-        <SignUp />
-      </AuthProvider>
+    <div className='App'>
+      <Router>
+        <AuthProvider>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/signup' element={<SignUp />} />
+            <Route path='/login' element={<Login />} />
+            {/* <Route path='/forgot-password' element={ForgotPassword} /> */}
+          </Routes>
+        </AuthProvider>
+      </Router>
     </div>
   );
 }

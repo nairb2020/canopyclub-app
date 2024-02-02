@@ -1,5 +1,5 @@
 import React from "react";
-import ChooseImage from "../assets/choose-image.png";
+import ChooseImage from "../../../assets/choose-image.png";
 
 const Work = () => {
   const workInfoData = [
