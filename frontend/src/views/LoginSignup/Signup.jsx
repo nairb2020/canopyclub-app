@@ -67,9 +67,7 @@ export default function SignUp() {
   };
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-
   const handleClickShowPasswordConfirm = () => setShowPasswordConfirm((showconfirm) => !showconfirm);
-
   const handleMouseDownPassword = (e) => e.preventDefault();
 
   return (

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useRef, useState } from "react";
 import {
   Avatar,
   Button,
@@ -11,19 +11,30 @@ import {
   Box,
   Typography,
   Container,
+  InputAdornment,
+  IconButton,
+  FormControl,
+  InputLabel,
+  OutlinedInput,
 } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Copyright } from "./components/utils";
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
+  const [showPassword, setShowPassword] = useState(false);
+  const { login } = useAuth();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
     console.log({
       email: data.get("email"),
       password: data.get("password"),
     });
   };
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleMouseDownPassword = (e) => e.preventDefault();
 
   return (
     <Container component='main' maxWidth='xs'>
@@ -52,16 +63,27 @@ export default function SignIn() {
             autoComplete='email'
             autoFocus
           />
-          <TextField
-            margin='normal'
-            required
-            fullWidth
-            name='password'
-            label='Password'
-            type='password'
-            id='password'
-            autoComplete='current-password'
-          />
+          <FormControl required fullWidth variant='outlined' margin='normal'>
+            <InputLabel htmlFor='password'>Password</InputLabel>
+            <OutlinedInput
+              id='password'
+              name='password'
+              label='password'
+              autoComplete='off'
+              type={showPassword ? "text" : "password"}
+              endAdornment={
+                <InputAdornment position='end'>
+                  <IconButton
+                    aria-label='toggle password visibility'
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge='end'>
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+          </FormControl>
           <FormControlLabel control={<Checkbox value='remember' color='primary' />} label='Remember me' />
           <Button type='submit' fullWidth variant='contained' sx={{ mt: 3, mb: 2 }}>
             Sign In
