@@ -15,6 +15,9 @@ function App() {
       <About />
       <Work />
       <Testimonials />
+
+
+      
       <ContactUs />
       <Footer /> */}
       <AuthProvider>
