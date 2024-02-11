@@ -12,3 +12,11 @@ export const Copyright = (props) => {
     </Typography>
   );
 };
+
+
+export const setErrorWithTimeOut = (errorMessage, setError) => {
+  setError(errorMessage);
+  setTimeout(() => {
+    setError("");
+  }, 5000);
+};

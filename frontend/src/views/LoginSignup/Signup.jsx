@@ -21,8 +21,8 @@ import {
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { useAuth } from "../../contexts/AuthContext";
-import { Copyright } from "./components/utils";
-
+import { Copyright, setErrorWithTimeOut } from "./components/utils";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   const emailRef = useRef();
@@ -33,13 +33,7 @@ export default function SignUp() {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
-
-  const setErrorWithTimeOut = (errorMessage) => {
-    setError(errorMessage);
-    setTimeout(() => {
-      setError("");
-    }, 5000);
-  };
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // prevent form from refreshing
@@ -47,20 +41,22 @@ export default function SignUp() {
     emailRef.current = data.get("email");
     passwordRef.current = data.get("password");
     passwordConfirmRef.current = data.get("password-confirmation");
+    // Password checks
     if (passwordRef.current !== passwordConfirmRef.current) {
-      return setErrorWithTimeOut("Passwords do not match");
+      return setErrorWithTimeOut("Passwords do not match", setError);
     }
     // TODO: add additional password validations here. Ex https://github.com/tdcolvin/SafeFirebasePasswordReset
     if (passwordRef.current.length < 6) {
-      return setErrorWithTimeOut("Password must be at least 6 characters");
+      return setErrorWithTimeOut("Password must be at least 6 characters", setError);
     }
 
     try {
       setError("");
       setLoading(true);
       await signup(emailRef.current, passwordRef.current);
+      navigate("/dashboard");
     } catch {
-      setErrorWithTimeOut("Failed to create an account");
+      setErrorWithTimeOut("Failed to create an account", setError);
     }
     setLoading(false);
     console.log(emailRef.current, passwordRef.current);

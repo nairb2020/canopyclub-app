@@ -1,14 +1,15 @@
 import React, { useRef, useState } from "react";
 import {
   Avatar,
+  Alert,
   Button,
   CssBaseline,
   TextField,
   FormControlLabel,
   Checkbox,
-  Link,
   Grid,
   Box,
+  Link,
   Typography,
   Container,
   InputAdornment,
@@ -19,19 +20,40 @@ import {
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { Copyright } from "./components/utils";
+import { Copyright, setErrorWithTimeOut } from "./components/utils";
 import { useAuth } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function SignIn() {
-  const [showPassword, setShowPassword] = useState(false);
+  const emailRef = useRef();
+  const passwordRef = useRef();
   const { login } = useAuth();
-  const handleSubmit = (e) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    emailRef.current = data.get("email");
+    passwordRef.current = data.get("password");
+
+    if (!emailRef.current) {
+        return setErrorWithTimeOut("Email is required", setError);
+    } else if (!passwordRef.current) {
+        return setErrorWithTimeOut("Password is required", setError);
+    }
+
+    try {
+      setError("");
+      setLoading(true);
+      await login(emailRef.current, passwordRef.current);
+      navigate("/dashboard");
+    } catch {
+      setErrorWithTimeOut("Failed to log in", setError);
+    }
+    setLoading(false);
   };
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (e) => e.preventDefault();
@@ -52,6 +74,7 @@ export default function SignIn() {
         <Typography component='h1' variant='h5'>
           Sign in
         </Typography>
+        {error && <Alert severity='error'>{error}</Alert>}
         <Box component='form' onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
             margin='normal'
@@ -85,17 +108,17 @@ export default function SignIn() {
             />
           </FormControl>
           <FormControlLabel control={<Checkbox value='remember' color='primary' />} label='Remember me' />
-          <Button type='submit' fullWidth variant='contained' sx={{ mt: 3, mb: 2 }}>
+          <Button disabled={loading} type='submit' fullWidth variant='contained' sx={{ mt: 3, mb: 2 }}>
             Sign In
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href='#' variant='body2'>
+              <Link href='/forgot-password' variant='body2'>
                 Forgot password?
               </Link>
             </Grid>
             <Grid item>
-              <Link href='/Signup' variant='body2'>
+              <Link href='/signup' variant='body2'>
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
