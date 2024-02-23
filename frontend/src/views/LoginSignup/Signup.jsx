@@ -21,7 +21,7 @@ import {
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { useAuth } from "../../contexts/AuthContext";
-import { Copyright, setErrorWithTimeOut } from "./components/utils";
+import { Copyright, setErrorWithTimeOut } from "../../components/utils";
 import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {

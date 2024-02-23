@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../../contexts/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
-import { setErrorWithTimeOut } from "./components/utils";
+import { setErrorWithTimeOut } from "../../components/utils";
 
 export default function UpdateProfile() {
   const emailRef = useRef();

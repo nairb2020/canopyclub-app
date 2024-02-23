@@ -1,5 +1,4 @@
-import "./App.css";
-import Home from "./views/home/Home";
+import LandingPage from "./views/landing_page/LandingPage";
 import SignUp from "./views/LoginSignup/Signup";
 import Login from "./views/LoginSignup/Login";
 import PrivateRoute from "./contexts/PrivateRoute";
@@ -14,7 +13,7 @@ function App() {
       <Router>
         <AuthProvider>
           <Routes>
-            <Route path='/' element={<Home />} />
+            <Route path='/' element={<LandingPage />} />
             <Route path='/signup' element={<SignUp />} />
             <Route path='/login' element={<Login />} />
             <Route element={<PrivateRoute />}>
