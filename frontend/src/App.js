@@ -6,10 +6,11 @@ import Dashboard from "./views/dashboard/Dashboard";
 import UpdateProfile from "./views/LoginSignup/UpdateProfile";
 import { AuthProvider } from "./contexts/AuthContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 function App() {
   return (
-    <div className='App'>
+    <ThemeProvider>
       <Router>
         <AuthProvider>
           <Routes>
@@ -24,7 +25,7 @@ function App() {
           </Routes>
         </AuthProvider>
       </Router>
-    </div>
+    </ThemeProvider>
   );
 }
 

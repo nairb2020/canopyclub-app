@@ -16,9 +16,9 @@ export default function Hero() {
         width: '100%',
         backgroundImage:
           theme.palette.mode === 'light'
-            ? 'linear-gradient(180deg, #CEE5FD, #FFF)'
-            : 'linear-gradient(#02294F, #090E10)',
-        backgroundSize: '100% 20%',
+            ? 'linear-gradient(180deg, #EDEDF0, #FFF)'
+            : 'linear-gradient(#11110f, #121212)',
+        backgroundSize: '100% 50%',
         backgroundRepeat: 'no-repeat',
       })}
     >
