@@ -1,4 +1,5 @@
 import LandingPage from "./views/landing_page/LandingPage";
+import CssBaseline from "@mui/material/CssBaseline";
 import SignUp from "./views/LoginSignup/Signup";
 import Login from "./views/LoginSignup/Login";
 import PrivateRoute from "./contexts/PrivateRoute";
@@ -11,6 +12,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 function App() {
   return (
     <ThemeProvider>
+      <CssBaseline />
       <Router>
         <AuthProvider>
           <Routes>

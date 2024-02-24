@@ -11,9 +11,9 @@ import MenuItem from "@mui/material/MenuItem";
 import Drawer from "@mui/material/Drawer";
 import MenuIcon from "@mui/icons-material/Menu";
 import ToggleColorMode from "../../../components/icons/ToggleColorMode";
-import tastedLogo from "../../../assets/tastedlogo.svg";
 import { Link, useLocation } from "react-router-dom";
 import { scrollToSection as defaultScrollToSection } from "../../../components/utils";
+import TastedLogo from "../../../components/icons/TastedLogo";
 
 const logoStyle = {
   width: "90px",
@@ -22,7 +22,7 @@ const logoStyle = {
   cursor: "pointer",
 };
 
-function AppAppBar({ mode, toggleColorMode }) {
+function AppNavBar({ mode, toggleColorMode }) {
   const [open, setOpen] = React.useState(false);
   const location = useLocation(); // Hook to access the current location
 
@@ -74,55 +74,54 @@ function AppAppBar({ mode, toggleColorMode }) {
                 px: 0,
               }}>
               <Link to='/' onClick={scrollToTop}>
-                <img src={tastedLogo} style={logoStyle} alt='Tasted Logo' />
+                <TastedLogo style={logoStyle} />
               </Link>
-              <Box sx={{ display: { xs: "none", md: "flex" } }}>
-                <MenuItem onClick={() => scrollToSection("about")} sx={{ py: "6px", px: "12px" }}>
-                  <Typography variant='body2' color='text.primary'>
+              <Box sx={{ display: { xs: "none", md: "flex" }, justifyContent: "flex-end", flexGrow: 1 }}>
+                <MenuItem onClick={() => scrollToSection("about")} sx={{ py: "6px", px: "12px", mx: 2 }}>
+                  <Typography variant='h6' color='text.primary'>
                     ABOUT
                   </Typography>
                 </MenuItem>
-                <MenuItem onClick={() => scrollToSection("apply")} sx={{ py: "6px", px: "12px" }}>
-                  <Typography variant='body2' color='text.primary'>
+                <MenuItem onClick={() => scrollToSection("apply")} sx={{ py: "6px", px: "12px", mx: 2 }}>
+                  <Typography variant='h6' color='text.primary'>
                     APPLY
                   </Typography>
                 </MenuItem>
-                <MenuItem onClick={() => scrollToSection("contact")} sx={{ py: "6px", px: "12px" }}>
-                  <Typography variant='body2' color='text.primary'>
+                <MenuItem onClick={() => scrollToSection("contact")} sx={{ py: "6px", px: "12px", mx: 2 }}>
+                  <Typography variant='h6' color='text.primary'>
                     CONTACT
                   </Typography>
                 </MenuItem>
-                <MenuItem onClick={() => scrollToSection("faq")} sx={{ py: "6px", px: "12px" }}>
-                  <Typography variant='body2' color='text.primary'>
+                <MenuItem onClick={() => scrollToSection("faq")} sx={{ py: "6px", px: "12px", mx: 2 }}>
+                  <Typography variant='h6' color='text.primary'>
                     FAQ
                   </Typography>
                 </MenuItem>
               </Box>
             </Box>
+            <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
             <Box
               sx={{
                 display: { xs: "none", md: "flex" },
                 gap: 0.5,
                 alignItems: "center",
               }}>
-              <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
-              <Button
-                color='primary'
-                variant='text'
-                size='small'
-                component='a'
-                href='/material-ui/getting-started/templates/sign-in/'
-                target='_blank'>
-                Sign in
-              </Button>
               <Button
                 color='primary'
                 variant='contained'
                 size='small'
                 component='a'
-                href='/material-ui/getting-started/templates/sign-up/'
-                target='_blank'>
-                Sign up
+                href='/login'
+                sx={{
+                  color: "white",
+                  boxShadow: "none",
+                  "&:hover": {
+                    boxShadow: "none", // Also remove the shadow on hover
+                    backgroundColor: "primary.main",
+                    opacity: 0.8, // Adjust opacity to control darkness; lower is darker
+                  },
+                }}>
+                LOG IN/SIGN UP
               </Button>
             </Box>
             <Box sx={{ display: { xs: "flex", md: "none" } }}>
@@ -151,31 +150,45 @@ function AppAppBar({ mode, toggleColorMode }) {
                     }}>
                     <ToggleColorMode mode={mode} toggleColorMode={toggleColorMode} />
                   </Box>
-                  <MenuItem onClick={() => scrollToSection("about")}>ABOUT</MenuItem>
-                  <MenuItem onClick={() => scrollToSection("apply")}>APPLY</MenuItem>
-                  <MenuItem onClick={() => scrollToSection("contact")}>CONTACT</MenuItem>
-                  <MenuItem onClick={() => scrollToSection("faq")}>FAQ</MenuItem>
+                  <MenuItem onClick={() => scrollToSection("about")}>
+                    <Typography variant='h5' color='text.primary'>
+                      ABOUT
+                    </Typography>
+                  </MenuItem>
+                  <MenuItem onClick={() => scrollToSection("apply")}>
+                    <Typography variant='h5' color='text.primary'>
+                      APPLY
+                    </Typography>
+                  </MenuItem>
+                  <MenuItem onClick={() => scrollToSection("contact")}>
+                    <Typography variant='h5' color='text.primary'>
+                      CONTACT
+                    </Typography>
+                  </MenuItem>
+                  <MenuItem onClick={() => scrollToSection("faq")}>
+                    <Typography variant='h5' color='text.primary'>
+                      FAQ
+                    </Typography>
+                  </MenuItem>
                   <Divider />
                   <MenuItem>
                     <Button
                       color='primary'
                       variant='contained'
                       component='a'
-                      href='/material-ui/getting-started/templates/sign-up/'
-                      target='_blank'
-                      sx={{ width: "100%" }}>
-                      Sign up
-                    </Button>
-                  </MenuItem>
-                  <MenuItem>
-                    <Button
-                      color='primary'
-                      variant='outlined'
-                      component='a'
-                      href='/material-ui/getting-started/templates/sign-in/'
-                      target='_blank'
-                      sx={{ width: "100%" }}>
-                      Sign in
+                      size='medium'
+                      href='/login'
+                      sx={{
+                        width: "100%",
+                        color: mode == "light" ? "white" : "black",
+                        boxShadow: "none",
+                        "&:hover": {
+                          boxShadow: "none", // Also remove the shadow on hover
+                          backgroundColor: "primary.main",
+                          opacity: 0.8, // Adjust opacity to control darkness; lower is darker
+                        },
+                      }}>
+                      LOG IN/SIGN UP
                     </Button>
                   </MenuItem>
                 </Box>
@@ -188,9 +201,9 @@ function AppAppBar({ mode, toggleColorMode }) {
   );
 }
 
-AppAppBar.propTypes = {
+AppNavBar.propTypes = {
   mode: PropTypes.oneOf(["dark", "light"]).isRequired,
   toggleColorMode: PropTypes.func.isRequired,
 };
 
-export default AppAppBar;
+export default AppNavBar;

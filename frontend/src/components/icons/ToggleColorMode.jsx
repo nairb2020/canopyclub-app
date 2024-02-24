@@ -9,7 +9,7 @@ import ModeNightRoundedIcon from '@mui/icons-material/ModeNightRounded';
 
 function ToggleColorMode({ mode, toggleColorMode }) {
   return (
-    <Box sx={{ maxWidth: '32px' }}>
+    <Box sx={{ maxWidth: '32px', mr: 2 }}>
       <Button
         variant="text"
         onClick={toggleColorMode}
@@ -18,9 +18,9 @@ function ToggleColorMode({ mode, toggleColorMode }) {
         sx={{ minWidth: '32px', height: '32px', p: '4px' }}
       >
         {mode === 'dark' ? (
-          <WbSunnyRoundedIcon fontSize="small" />
+          <WbSunnyRoundedIcon fontSize="small" sx={{ color: '#fff' }}/>
         ) : (
-          <ModeNightRoundedIcon fontSize="small" />
+          <ModeNightRoundedIcon fontSize="small" sx={{ color: '#000' }} />
         )}
       </Button>
     </Box>

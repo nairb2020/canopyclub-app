@@ -1,123 +1,68 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
-import AutoFixHighRoundedIcon from '@mui/icons-material/AutoFixHighRounded';
-import ConstructionRoundedIcon from '@mui/icons-material/ConstructionRounded';
-import QueryStatsRoundedIcon from '@mui/icons-material/QueryStatsRounded';
-import SettingsSuggestRoundedIcon from '@mui/icons-material/SettingsSuggestRounded';
-import SupportAgentRoundedIcon from '@mui/icons-material/SupportAgentRounded';
-import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
-
-const items = [
-  {
-    icon: <SettingsSuggestRoundedIcon />,
-    title: 'Adaptable performance',
-    description:
-      'Our product effortlessly adjusts to your needs, boosting efficiency and simplifying your tasks.',
-  },
-  {
-    icon: <ConstructionRoundedIcon />,
-    title: 'Built to last',
-    description:
-      'Experience unmatched durability that goes above and beyond with lasting investment.',
-  },
-  {
-    icon: <ThumbUpAltRoundedIcon />,
-    title: 'Great user experience',
-    description:
-      'Integrate our product into your routine with an intuitive and easy-to-use interface.',
-  },
-  {
-    icon: <AutoFixHighRoundedIcon />,
-    title: 'Innovative functionality',
-    description:
-      'Stay ahead with features that set new standards, addressing your evolving needs better than the rest.',
-  },
-  {
-    icon: <SupportAgentRoundedIcon />,
-    title: 'Reliable support',
-    description:
-      'Count on our responsive customer support, offering assistance that goes beyond the purchase.',
-  },
-  {
-    icon: <QueryStatsRoundedIcon />,
-    title: 'Precision in every detail',
-    description:
-      'Enjoy a meticulously crafted product where small touches make a significant impact on your overall experience.',
-  },
-];
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import mobileBGImage from "../../../assets/L1000219.jpg";
 
 export default function Contact() {
   return (
-    <Box
-      id="contact"
-      sx={{
-        pt: { xs: 4, sm: 12 },
-        pb: { xs: 8, sm: 16 },
-        color: 'white',
-        bgcolor: '#06090a',
-      }}
-    >
-      <Container
-        sx={{
-          position: 'relative',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: { xs: 3, sm: 6 },
-        }}
-      >
-        <Box
-          sx={{
-            width: { sm: '100%', md: '60%' },
-            textAlign: { sm: 'left', md: 'center' },
-          }}
-        >
-          <Typography component="h2" variant="h4">
-            Highlights
-          </Typography>
-          <Typography variant="body1" sx={{ color: 'grey.400' }}>
-            Explore why our product stands out: adaptability, durability,
-            user-friendly design, and innovation. Enjoy reliable customer support and
-            precision in every detail.
-          </Typography>
-        </Box>
-        <Grid container spacing={2.5}>
-          {items.map((item, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <Stack
-                direction="column"
-                color="inherit"
-                component={Card}
-                spacing={1}
-                useFlexGap
-                sx={{
-                  p: 3,
-                  height: '100%',
-                  border: '1px solid',
-                  borderColor: 'grey.800',
-                  background: 'transparent',
-                  backgroundColor: 'grey.900',
-                }}
-              >
-                <Box sx={{ opacity: '50%' }}>{item.icon}</Box>
-                <div>
-                  <Typography fontWeight="medium" gutterBottom>
-                    {item.title}
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: 'grey.400' }}>
-                    {item.description}
-                  </Typography>
-                </div>
-              </Stack>
-            </Grid>
-          ))}
+    <Container id='contact' sx={{ pt: 0, pb: { xs: 8, md: 12 } }}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} md={6} sx={{ display: "flex", width: "100%", order: { xs: 2, md: 1 } }}>
+          <Box
+            sx={{
+              mx: "auto",
+              maxWidth: { xs: "80%", sm: "100%" }, // Control the width as needed
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "auto",
+              width: "auto",
+            }}>
+            <img
+              src={mobileBGImage}
+              alt='Background'
+              style={{ maxHeight: "600px", width: "100%", height: "100%", objectFit: "cover" }}
+            />
+          </Box>
         </Grid>
-      </Container>
-    </Box>
+        <Grid item xs={12} md={6} sx={{ dispaly: "flex", width: "100%", order: { xs: 1, md: 2 } }}>
+          <Box sx={{ pt: { xs: 0, sm: 5, md: 20 }, ml: 2, mr: 1, textAlign: "center" }}>
+            <Typography component='h2' variant='h4' color='text.primary' sx={{ fontWeight: "bold" }}>
+              Contact
+            </Typography>
+            <Typography variant='body1' color='text.primary' sx={{ mt: 3, mb: 3, textAlign: "left" }}>
+              Can't find what you need? Let us know, and we'll respond within 24 hours. Reach out to{" "}
+              <a href='mailto:hello@tasted.com' style={{ color: "inherit" }}>
+                hello@tasted.com
+              </a>
+              . 
+            </Typography>
+            <Box sx={{ display: "flex", justifyContent: "center", my: 2 }}>
+              <Button
+                color='primary'
+                variant='contained'
+                size='medium'
+                component='a'
+                href='/signup'
+                sx={{
+                  fontFamily: '"Lora", serif',
+                  color: "white",
+                  boxShadow: "none",
+                  "&:hover": {
+                    boxShadow: "none", // Also remove the shadow on hover
+                    backgroundColor: "primary.main",
+                    opacity: 0.8, // Adjust opacity to control darkness; lower is darker
+                  },
+                }}>
+                CONTACT AN ADVISOR
+              </Button>
+            </Box>
+          </Box>
+        </Grid>
+      </Grid>
+    </Container>
   );
 }

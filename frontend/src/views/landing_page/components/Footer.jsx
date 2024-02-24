@@ -3,17 +3,17 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import IconButton from "@mui/material/IconButton";
-import { Link as MuiLink } from "@mui/material";
+import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-
-import FacebookIcon from "@mui/icons-material/GitHub";
+import TastedLogo from "../../../components/icons/TastedLogo";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/X";
 import { Copyright } from "../../../components/utils";
-import tastedLogo from "../../../assets/tastedlogo.svg";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { scrollToSection } from "../../../components/utils";
 
 const logoStyle = {
   width: "90px",
@@ -56,8 +56,8 @@ export default function Footer() {
             minWidth: { xs: "100%", sm: "60%" },
           }}>
           <Box sx={{ width: { xs: "100%", sm: "60%" } }}>
-            <Link to='/' onClick={scrollToTop}>
-              <img src={tastedLogo} style={logoStyle} alt='Tasted Logo' />
+            <Link href='/' onClick={scrollToTop}>
+              <TastedLogo style={logoStyle} />
             </Link>
             <Typography variant='body2' fontWeight={600} gutterBottom>
               Newsletter
@@ -91,21 +91,29 @@ export default function Footer() {
             flexDirection: "column",
             gap: 1,
           }}>
-          <Typography variant='body2' fontWeight={600}>
+          <Typography variant='h6' fontWeight={600}>
             Product
           </Typography>
-          <MuiLink color='text.secondary' href='#'>
-            ABOUT
-          </MuiLink>
-          <MuiLink color='text.secondary' href='#'>
-            APPLY
-          </MuiLink>
-          <MuiLink color='text.secondary' href='#'>
-            CONTACT
-          </MuiLink>
-          <MuiLink color='text.secondary' href='#'>
-            FAQs
-          </MuiLink>
+          <Link color='text.secondary' onClick={() => scrollToSection("about")}>
+            <Typography variant='body1' color='text.secondary'>
+              ABOUT
+            </Typography>
+          </Link>
+          <Link color='text.secondary' onClick={() => scrollToSection("apply")}>
+            <Typography variant='body1' color='text.secondary'>
+              APPLY
+            </Typography>
+          </Link>
+          <Link color='text.secondary' onClick={() => scrollToSection("contact")}>
+            <Typography variant='body1' color='text.secondary'>
+              CONTACT
+            </Typography>
+          </Link>
+          <Link color='text.secondary' onClick={() => scrollToSection("faq")}>
+            <Typography variant='body1' color='text.secondary'>
+              FAQs
+            </Typography>
+          </Link>
         </Box>
         <Box
           sx={{
@@ -113,17 +121,23 @@ export default function Footer() {
             flexDirection: "column",
             gap: 1,
           }}>
-          <Typography variant='body2' fontWeight={600}>
+          <Typography variant='h6' fontWeight={600}>
             Company
           </Typography>
-          <Link color='text.secondary' href='#'>
-            About us
+          <Link color='text.secondary' onClick={() => scrollToSection("contact")}>
+            <Typography variant='body1' color='text.secondary'>
+              About us
+            </Typography>
           </Link>
-          <Link color='text.secondary' href='#'>
-            Careers
+          <Link color='text.secondary' onClick={() => scrollToSection("contact")}>
+            <Typography variant='body1' color='text.secondary'>
+              Careers
+            </Typography>
           </Link>
-          <Link color='text.secondary' href='#'>
-            Press
+          <Link color='text.secondary' onClick={() => scrollToSection("contact")}>
+            <Typography variant='body1' color='text.secondary'>
+              Press
+            </Typography>
           </Link>
         </Box>
         <Box
@@ -132,18 +146,24 @@ export default function Footer() {
             flexDirection: "column",
             gap: 1,
           }}>
-          <Typography variant='body2' fontWeight={600}>
+          <Typography variant='h6' fontWeight={600}>
             Legal
           </Typography>
-          <MuiLink color='text.secondary' href='#'>
-            Terms
-          </MuiLink>
-          <MuiLink color='text.secondary' href='#'>
-            Privacy
-          </MuiLink>
-          <MuiLink color='text.secondary' href='#'>
-            Contact
-          </MuiLink>
+          <Link color='text.secondary' onClick={() => scrollToSection("contact")}>
+            <Typography variant='body1' color='text.secondary'>
+              Terms
+            </Typography>
+          </Link>
+          <Link color='text.secondary' onClick={() => scrollToSection("contact")}>
+            <Typography variant='body1' color='text.secondary'>
+              Privacy
+            </Typography>
+          </Link>
+          <Link color='text.secondary' onClick={() => scrollToSection("contact")}>
+            <Typography variant='body1' color='text.secondary'>
+              Contact
+            </Typography>
+          </Link>
         </Box>
       </Box>
       <Box
@@ -156,15 +176,15 @@ export default function Footer() {
           borderColor: "divider",
         }}>
         <div>
-          <MuiLink color='text.secondary' href='#'>
+          <Link color='text.secondary' href='#'>
             Privacy Policy
-          </MuiLink>
+          </Link>
           <Typography display='inline' sx={{ mx: 0.5, opacity: 0.5 }}>
             &nbsp;•&nbsp;
           </Typography>
-          <MuiLink color='text.secondary' href='#'>
+          <Link color='text.secondary' href='#'>
             Terms of Service
-          </MuiLink>
+          </Link>
           <Copyright />
         </div>
         <Stack
@@ -175,19 +195,33 @@ export default function Footer() {
           sx={{
             color: "text.secondary",
           }}>
-          <IconButton color='inherit' href='https://github.com/mui' aria-label='GitHub' sx={{ alignSelf: "center" }}>
-            <FacebookIcon />
-          </IconButton>
-          <IconButton color='inherit' href='https://twitter.com/MaterialUI' aria-label='X' sx={{ alignSelf: "center" }}>
-            <TwitterIcon />
-          </IconButton>
-          <IconButton
-            color='inherit'
-            href='https://www.linkedin.com/company/mui/'
-            aria-label='LinkedIn'
-            sx={{ alignSelf: "center" }}>
-            <LinkedInIcon />
-          </IconButton>
+          <Link
+            href='https://github.com/nairb2020/canopyclub-app'
+            target='_blank'
+            rel='noopener noreferrer'
+            sx={{ color: "inherit" }}>
+            <IconButton color='inherit' aria-label='GitHub' sx={{ alignSelf: "center" }}>
+              <GitHubIcon />
+            </IconButton>
+          </Link>
+          <Link
+            href='https://twitter.com'
+            target='_blank'
+            rel='noopener noreferrer'
+            sx={{ color: "inherit" }}>
+            <IconButton color='inherit' aria-label='GitHub' sx={{ alignSelf: "center" }}>
+              <TwitterIcon />
+            </IconButton>
+          </Link>
+          <Link
+            href='https://www.linkedin.com'
+            target='_blank'
+            rel='noopener noreferrer'
+            sx={{ color: "inherit" }}>
+            <IconButton color='inherit' aria-label='GitHub' sx={{ alignSelf: "center" }}>
+              <LinkedInIcon />
+            </IconButton>
+          </Link>
         </Stack>
       </Box>
     </Container>
